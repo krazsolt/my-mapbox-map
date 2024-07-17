@@ -9,8 +9,8 @@
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
         .custom-marker {
-            width: 10px;
-            height: 10px;
+            width: 5px;
+            height: 5px;
             background-color: red;
             border-radius: 50%;
             cursor: pointer;
@@ -27,7 +27,7 @@
         const map = new mapboxgl.Map({
             container: 'map', // A div elem azonosítója
             style: 'mapbox://styles/mapbox/satellite-v9', // Stílus URL műholdképhez
-            center: [19.040235, 47.497913], // A térkép középpontja (Budapest koordinátái)
+            center: [19.040235, 47.497913], // Magyarország középpontja
             zoom: 6 // Kezdő zoom szint
         });
 
