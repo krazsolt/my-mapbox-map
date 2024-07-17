@@ -8,6 +8,13 @@
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
+        .custom-marker {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -19,7 +26,7 @@
 
         const map = new mapboxgl.Map({
             container: 'map', // A div elem azonosítója
-            style: 'mapbox://styles/mapbox/satellite-streets-v11', // Stílus URL
+            style: 'mapbox://styles/mapbox/satellite-v9', // Stílus URL műholdképhez
             center: [19.040235, 47.497913], // A térkép középpontja (Budapest koordinátái)
             zoom: 6 // Kezdő zoom szint
         });
@@ -27,7 +34,11 @@
         // CSV fájl betöltése d3.js segítségével
         d3.csv('locations.csv').then(data => {
             data.forEach(location => {
-                const marker = new mapboxgl.Marker()
+                // Készít egy div elemet a jelölő számára
+                const el = document.createElement('div');
+                el.className = 'custom-marker';
+
+                const marker = new mapboxgl.Marker(el)
                     .setLngLat([+location.longitude, +location.latitude])
                     .setPopup(new mapboxgl.Popup({ offset: 25 }) // Pop-up hozzáadása
                         .setHTML(`<h3>${location.title}</h3><p>${location.additional_info}</p>`))
